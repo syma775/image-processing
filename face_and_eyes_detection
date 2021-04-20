@@ -1,0 +1,31 @@
+import cv2
+import  numpy as np
+
+face_classifier = cv2.CascadeClassifier("haarcasecade/haarcascade_frontalface_default.xml")
+eye_classifier = cv2.CascadeClassifier("haarcasecade/haarcascade_eye.xml")
+
+img = cv2.imread("eye_face.jpg")
+fix_image = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
+cv2.imshow("rgb image",fix_image)
+cv2.waitKey(0)
+faces = face_classifier.detectMultiScale(img, 1.3 ,5)
+eyes = eye_classifier.detectMultiScale(img, 1.3,5)
+if faces is():
+    print("no face detected")
+
+
+    def detect_face(fix_image):
+        face_reacts = face_classifier.detectMultiScale(fix_image)
+
+        for (x, y, w, h) in face_reacts:
+            cv2.rectangle(fix_image, (x, y), (x + w, y + h), (255, 0, 0), 6)
+            eye_reacts = eye_classifier.detectMultiScale(fix_image)
+            for (ix,iy,iw,ih) in eye_reacts:
+                cv2.rectangle(fix_image,(ix,iy),(ix+iw,iy+ih),(255,0,0),5)
+
+        return fix_image
+
+
+    result = detect_face(fix_image)
+    cv2.imshow("detected image", result)
+    cv2.waitKey(0)

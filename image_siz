@@ -1,0 +1,48 @@
+import cv2
+#downscale(decrease the image size)
+img=cv2.imread("syma.jpg",1)
+img1=cv2.imshow("orginal image",img)
+cv2.waitKey(0)
+print(img1)
+print("orginal shape:",img.shape)
+scale_percent=60
+width = int(img.shape[1]*scale_percent/100)
+height = int(img.shape[0]*scale_percent/100)
+dim = (width,height)
+resized=cv2.resize(img,dim,interpolation=cv2.INTER_AREA)
+print("downscale shape:",resized.shape)
+cv2.imshow("downscale image",resized)
+cv2.waitKey(0)
+#upscale(increase the image size)
+scale_percent1=220
+width=int(img.shape[1]*scale_percent1/100)
+height=int(img.shape[0]*scale_percent1/100)
+dim1=(width,height)
+resized1=cv2.resize(img,dim1,interpolation=cv2.INTER_AREA)
+print("upscale shape:",resized1.shape)
+cv2.imshow("upscale image",resized1)
+cv2.waitKey(0)
+#resize only width
+width=600
+height=img.shape[0]
+dim=(width,height)
+resized2=cv2.resize(img,dim,interpolation=cv2.INTER_AREA)
+print("resize only width:",resized2.shape)
+cv2.imshow("resized only width",resized2)
+cv2.waitKey(0)
+#resize only height
+height=800
+width=img.shape[1]
+dim=(width,height)
+resized3=cv2.resize(img,dim,interpolation=cv2.INTER_AREA)
+print("resize only height:",resized3.shape)
+cv2.imshow("resized only height",resized3)
+cv2.waitKey(0)
+# resized width and height
+width=600
+height=600
+dim=(width,height)
+resized4=cv2.resize(img,dim,interpolation=cv2.INTER_AREA)
+print("resize height and width:",resized4.shape)
+cv2.imshow("resized height and width",resized4)
+cv2.waitKey(0)

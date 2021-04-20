@@ -1,0 +1,34 @@
+import cv2
+import numpy
+#2d filter
+img=cv2.imread("syma.jpg",1)
+cv2.imshow("orginal image",img)
+cv2.waitKey(0)
+filter = numpy.array([[-1,-1,-1], [-1,9,-1], [-1,-1,-1]])
+img1=cv2.filter2D(img,-1,filter)
+cv2.imshow("sharp image",img1)
+cv2.waitKey(0)
+#maxican hat or laplacian filter
+kernel= numpy.array([[0, 0, -1, 0, 0], [0, -1, -2, -1, 0], [-1, -2, 16, -2, -1], [0, -1, -2, -1, 0], [0, 0, -1, 0, 0]])
+img2 = cv2.filter2D(img,-1,kernel)
+cv2.imshow("laplacian filter",img2)
+cv2.waitKey(0)
+#saphia effect filter
+(b,g,r)=cv2.split(img)
+red = r*0.393 + g*0.769 + b*0.189
+green= r*0.349 + g*0.686 + b*0.168
+blue = r*0.272 + g*0.534 + b*0.131
+img3=cv2.merge([blue, green, red])
+cv2.imshow("sepia filter image",img3)
+cv2.waitKey(0)
+# Creating our sepia filter
+filter = numpy.array([[0.272, 0.534, 0.131],[0.349, 0.686, 0.168],[0.393, 0.769, 0.189]])
+sepia_img=cv2.transform(img,filter)
+cv2.imshow("sepia effect filter",sepia_img)
+cv2.waitKey(0)
+# emboss filter
+filter = numpy.array([[0,1,0],[0,0,0],[0,-1,0]])
+emboss_img_1=cv2.filter2D(img,-1,filter)
+emboss_img_1=emboss_img_1+128
+cv2.imshow("emboss effect filter",emboss_img_1)
+cv2.waitKey(0)

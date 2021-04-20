@@ -1,0 +1,18 @@
+import cv2
+import numpy as np
+
+image = cv2.imread("car_plate.jpg")
+fix_image = cv2.cvtColor(image,cv2.COLOR_BGR2RGB)
+cv2.imshow("rgb image",fix_image)
+cv2.waitKey(0)
+car_plate_classifier = cv2.CascadeClassifier("haarcasecade/haarcascade_licence_plate_rus_16stages.xml")
+
+
+def detect_plate(fix_image):
+    plate_reacts = car_plate_classifier.detectMultiScale(fix_image)
+    for (x,y,w,h) in plate_reacts:
+        cv2.rectangle(fix_image,(x,y),(x+w,y+h),(255,0,0),1)
+        return fix_image
+    result = detect_plate(fix_image)
+    cv2.imshow("car plate",result)
+    cv2.waitKey(0)

@@ -1,0 +1,36 @@
+import cv2
+import numpy as np
+
+img = cv2.imread("bacteria.tif", -1)
+cv2.imshow("bacteria real image", img)
+
+#draw line
+cv2.line(img,(0,0),(511,511),(0,0,255),10)
+cv2.imshow("draw a line in image", img)
+
+#draw rectangle
+cv2.rectangle(img,(10,10),(200,128),(255,255,255),3)
+cv2.imshow("draw a rectangle in image", img)
+
+#draw circle
+cv2.circle(img,(60,60),40,(0,128,255),10)
+cv2.imshow("draw a circle in image", img)
+
+#draw ellipse
+cv2.ellipse(img,(256,256),(100,50),0,0,180,0,-1)
+cv2.imshow("draw a ellipse in image", img)
+
+#draw polygon
+pts = np.array([[10,5],[20,30],[70,20],[50,10]], np.int32)
+pts = pts.reshape((-1,1,2))
+cv2.polylines(img,[pts],True,(255,0,255),10)
+cv2.imshow("draw a polygon in image", img)
+
+#put text
+font = cv2.FONT_HERSHEY_SIMPLEX
+org = (50, 50)
+fontScale = 1
+color = (255, 0, 0)
+cv2.putText(img, 'OpenCV', org, font,fontScale, color, 2)
+cv2.imshow("draw a polygon in image", img)
+cv2.waitKey(0)

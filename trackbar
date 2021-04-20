@@ -1,0 +1,8 @@
+import cv2
+
+img = cv2.imread("bacteria.tif")
+
+cv2.namedWindow('Original')
+cv2.createTrackbar('Min', 'Original', 0, 800, no_op)
+cv2.createTrackbar('Max', 'Original', 100, 800, no_op)
+cv2.imshow('Original', img)

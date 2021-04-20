@@ -1,0 +1,82 @@
+import cv2
+import numpy
+img = cv2.imread("syma.jpg",1)
+cv2.imshow("orginal image",img)
+cv2.waitKey(0)
+print(img.shape)
+img1=cv2.rotate(img,cv2.ROTATE_90_CLOCKWISE)
+cv2.imshow("clockwise image",img1)
+cv2.waitKey(0)
+img2=cv2.rotate(img,cv2.ROTATE_90_COUNTERCLOCKWISE)
+cv2.imshow("counter clock wise image",img2)
+cv2.waitKey(0)
+img3=cv2.rotate(img,cv2.ROTATE_180)
+cv2.imshow("180 degree image",img3)
+cv2.waitKey(0)
+#flip image
+img5=cv2.flip(img,0)
+cv2.imshow("vertical image",img5)
+cv2.waitKey(0)
+img6=cv2.flip(img,1)
+cv2.imshow("horizontal image",img6)
+cv2.waitKey(0)
+img7=cv2.flip(img,-1)
+cv2.imshow("horizontal and vertical image",img7)
+cv2.waitKey(0)
+#circle
+cordinates=(120,80)
+radius=20
+thickness=-1
+color=(255,0,0)
+img=cv2.circle(img,cordinates,radius,color,thickness)
+cv2.imshow("circle image",img)
+cv2.waitKey(0)
+#rectangle
+start=(120,80)
+end=(20,10)
+thickness=-1
+color=(255,0,0)
+img=cv2.rectangle(img,start,end,color,thickness)
+cv2.imshow("rectangle image",img)
+cv2.waitKey(0)
+#line
+img=cv2.line(img,(0,0),(511,511),(255,0,0),5)
+cv2.imshow("lined image",img)
+cv2.waitKey(0)
+#text
+font = cv2.FONT_HERSHEY_SIMPLEX
+img=cv2.putText(img,'OpenCV',(10,500), font, 4,(255,255,255),2,cv2.LINE_AA)
+cv2.imshow("texted image",img)
+cv2.waitKey(0)
+#get familer with rgb channels
+im_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+cv2.imshow("rgb image",im_rgb)
+cv2.waitKey(0)
+#hsv image
+hsvImage = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+cv2.imshow("hsv image",hsvImage)
+cv2.waitKey(0)
+
+#remove red
+img4=(img[:,:,0])
+cv2.imshow(" red color image1",img4)
+cv2.waitKey(0)
+img[:,:,2] = numpy.zeros([img.shape[0], img.shape[1]])
+cv2.imshow("remove red color image2",img)
+cv2.waitKey(0)
+#remove green
+img4=(img[:,:,1])
+cv2.imshow("green color image",img4)
+cv2.waitKey(0)
+img[:,:,1] = numpy.zeros([img.shape[0], img.shape[1]])
+cv2.imshow("remove green color image2",img)
+cv2.waitKey(0)
+
+#remove blue
+img4=(img[:,:,2])
+cv2.imshow("blue color image",img4)
+cv2.waitKey(0)
+img[:,:,0] = numpy.zeros([img.shape[0], img.shape[1]])
+cv2.imshow("remove blue color image2",img)
+cv2.waitKey(0)
+

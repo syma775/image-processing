@@ -1,0 +1,10 @@
+import cv2
+img=cv2.imread("syma.jpg",1)
+dimension=img.shape
+print(dimension)
+height=img.shape[0]
+print("height:",height)
+width=img.shape[1]
+print("width:",width)
+channel=img.shape[2]
+print("channel:",channel)
